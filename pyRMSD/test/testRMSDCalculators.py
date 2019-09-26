@@ -3,6 +3,7 @@ Created on 16/11/2012
 
 @author: victor
 """
+from __future__ import print_function
 import unittest
 import pyRMSD.RMSDCalculator
 import numpy
@@ -280,7 +281,7 @@ class TestRMSDCalculators(unittest.TestCase):
                                                                              ])
         
         rmsds = calculator.pairwiseRMSDMatrix()
-        print rmsds
+        print(rmsds)
         
         
     # ------------------------------------------------------
