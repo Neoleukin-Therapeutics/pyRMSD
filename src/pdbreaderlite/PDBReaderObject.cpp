@@ -167,7 +167,11 @@ initpdbReader(void){
     PyObject* module;
 
     if (PyType_Ready(&pdbreaderType) < 0)
+#if PY_MAJOR_VERSION >= 3
         return module;
+#else
+        return;
+#endif
 
 #if PY_MAJOR_VERSION >= 3
     module = PyModule_Create(&moduledef);
@@ -176,11 +180,18 @@ initpdbReader(void){
 #endif
 
     if (module == NULL)
+#if PY_MAJOR_VERSION >= 3
           return module;
+#else
+          return;
+#endif
 
     Py_INCREF(&pdbreaderType);
     PyModule_AddObject(module, "PDBReader", (PyObject*) &pdbreaderType);
 
     import_array();
+
+#if PY_MAJOR_VERSION >= 3
     return module;
+#endif
 }
